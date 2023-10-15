@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Survey Form</title>
+    <style>
+        .bg-container {
+            height: 110vh;
+            background-color: skyblue;
+            padding: 20px;
+        }
+        label {
+            margin: 10px;
+        }
+        input {
+            padding: 5px;
+            margin-top: 7px;
+        }
+        #country {
+            padding-top: 4px;
+            margin-top: 5px;
+        }
+        button {
+            background-color: ;
+            padding: 9px;
+            margin: 10px;
+            border-radius: 8px;
+            border-color: blue;
+            border-style: soild;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-container">
+        <h1>SURVEY FORM</h1>
+        <form id="surveyForm">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" placeholder="Enter your firstname" required><br>
+
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" placeholder="Enter your lastname" required><br>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="text" id="dob" placeholder="dd-mm-yyyy" required><br>
+
+            <label for="country">Country:</label>
+            <select id="country" required>
+                <option value="">Select a Country</option>
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Telangana">Telangana</option>
+                <option value="Karnataka">Karnataka</option>
+                <!-- Add your list of countries as options here -->
+            </select><br>
+
+            <label>Gender:</label><br>
+            <input type="radio" name="gender" value="Male"> <label for="gen">Male</label><br>
+            <input type="radio" name="gender" value="Female"> <label for="gen">Female</label><br>
+            <input type="radio" name="gender" value="Other"> <label for="gen">Other</label><br>
+
+            <label for="profession">Profession:</label>
+            <input type="text" id="profession" required><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Enter your mail" required><br>
+
+            <label for="mobile">Mobile Number:</label>
+            <input type="tel" id="mobile" placeholder="12345678910" required><br>
+
+            <button type="button" onclick="submitForm()">Submit</button>
+            <button type="button" onclick="resetForm()">Reset</button>
+        </form>
+    </div>
+    <script>
+        function submitForm() {
+            // Perform validation here
+            var firstName = document.getElementById("firstName").value;
+            var lastName = document.getElementById("lastName").value;
+            var dob = document.getElementById("dob").value;
+            var country = document.getElementById("country").value;
+            var gender = getSelectedGender();
+            var profession = document.getElementById("profession").value;
+            var email = document.getElementById("email").value;
+            var mobile = document.getElementById("mobile").value;
+
+            // Check if all fields are filled
+            if (firstName && lastName && dob && country && gender && profession && email && mobile) {
+                var popupContent = "First Name: " + firstName + "\n" +
+                    "Last Name: " + lastName + "\n" +
+                    "Date of Birth: " + dob + "\n" +
+                    "Country: " + country + "\n" +
+                    "Gender: " + gender + "\n" +
+                    "Profession: " + profession + "\n" +
+                    "Email: " + email + "\n" +
+                    "Mobile Number: " + mobile;
+
+                alert(popupContent);
+
+                // Reset the form
+                document.getElementById("surveyForm").reset();
+            } else {
+                alert("Please fill in all required fields.");
+            }
+        }
+
+        function getSelectedGender() {
+            var gender = "";
+            var radios = document.getElementsByName("gender");
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    gender = radios[i].value;
+                    break;
+                }
+            }
+            return gender;
+        }
+
+        function resetForm() {
+            document.getElementById("surveyForm").reset();
+        }
+    </script>
+</body>
+</html>
